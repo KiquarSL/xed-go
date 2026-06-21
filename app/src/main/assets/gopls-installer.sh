@@ -1,14 +1,13 @@
 #!/system/bin/sh
 set -e
 
-source "$LOCAL/bin/utils" 
+source "$LOCAL/bin/utils" 2>/dev/null || true
 
 # CONFIGURATION
-LSP_DIR_KT="$HOME/.lsp/go"
+LSP_DIR_GO="$HOME/.lsp/go"
 GOPLS_LSP_VERSION="$1"
 
 # HELPERS
-
 install() {
 	info "Installing Go..."
 	apt update
@@ -16,31 +15,30 @@ install() {
 	
     info "Installing Go Language Server ${GOPLS_LSP_VERSION}..."
 	go install golang.org/x/tools/gopls@$GOPLS_LSP_VERSION
-	lh -s /home/go/bin/gopls $LSP_DIR_KT/gopls
-    chmod +x "$LSP_DIR_KT/gopls"
+	ln -sf "$(go env GOPATH)/bin/gopls" "$LSP_DIR_GO/gopls"
+    chmod +x "$LSP_DIR_GO/gopls"
 	
-	echo "$GOPLS_LSP_VERSION" > $LSP_DIR_KT/version.txt
+	echo "$GOPLS_LSP_VERSION" > "$LSP_DIR_GO/version.txt"
 }
 
 # MAIN
 case "$1" in
     --uninstall)
         info "Uninstalling Go..."
-        rm -rf "$LSP_DIR_KT"
-		rm -rf /home/go
+        rm -rf "$LSP_DIR_GO"
         info "Uninstalled successfully."
         exit 0
         ;;
     --update)
-        info "Updating Kotlin LSP..."
-        rm -rf "$LSP_DIR_KT"
+        info "Updating Go LSP..."
+        rm -rf "$LSP_DIR_GO"
         install
         exit 0
         ;;
     *)
         install
-        if ! grep -q "export PATH=\$PATH:$LSP_DIR_KT/" ~/.bashrc; then
-            echo "export PATH=\$PATH:$LSP_DIR_KT/" >> ~/.bashrc
+        if ! grep -q "export PATH=\$PATH:$LSP_DIR_GO/" ~/.bashrc; then
+            echo "export PATH=\$PATH:$LSP_DIR_GO/" >> ~/.bashrc
         fi
 		
         info "All done! Restart your terminal or run: source ~/.bashrc"
