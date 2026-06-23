@@ -29,13 +29,6 @@ class GoServer(
 
     private val goLspVersion = "v0.22.0"
 
-    override suspend fun isInstalled(context: Context): Boolean {
-        if (!isTerminalInstalled()) {
-            return false
-        }
-        return sandboxHomeDir().child(".lsp/go/gopls").exists()
-    }
-
     override fun install(activity: Activity) {
         launchInstaller(activity, goLspVersion)
     }
@@ -47,6 +40,14 @@ class GoServer(
     override fun update(activity: Activity) {
         launchInstaller(activity, "--update")
     }
+	
+	override suspend fun isInstalled(context: Context): Boolean {
+        if (!isTerminalInstalled()) {
+            return false
+        }
+        return sandboxHomeDir().child("go/bin/gopls").exists()
+    }
+
 
     override suspend fun isUpdatable(context: Context): Boolean {
         val versionFile = sandboxHomeDir().child(".lsp/go/version.txt")
@@ -56,7 +57,7 @@ class GoServer(
 
     override fun getConnectionConfig(): LspConnectionConfig {
     	return LspConnectionConfig.Process(arrayOf(
-            sandboxHomeDir().child(".lsp/bin/gopls").absolutePath
+            sandboxHomeDir().child(".lsp/go/gopls").absolutePath
         ))
 	}
 }
