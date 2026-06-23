@@ -33,8 +33,7 @@ class GoServer(
         if (!isTerminalInstalled()) {
             return false
         }
-        return sandboxHomeDir().child(".lsp/go/gopls").exists() &&
-                sandboxHomeDir().child(".lsp/go/gopls").canExecute()
+        return sandboxHomeDir().child(".lsp/go/gopls").exists()
     }
 
     override fun install(activity: Activity) {
