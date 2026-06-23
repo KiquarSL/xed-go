@@ -33,8 +33,8 @@ class GoServer(
         if (!isTerminalInstalled()) {
             return false
         }
-        return sandboxHomeDir().child("/home/go/bin/gopls").exists() &&
-                sandboxHomeDir().child("/home/go/bin/gopls").canExecute()
+        return sandboxHomeDir().child(".lsp/go/gopls").exists() &&
+                sandboxHomeDir().child(".lsp/go/gopls").canExecute()
     }
 
     override fun install(activity: Activity) {
@@ -57,7 +57,7 @@ class GoServer(
 
     override fun getConnectionConfig(): LspConnectionConfig {
     	return LspConnectionConfig.Process(arrayOf(
-            sandboxHomeDir().child("/home/go/bin/gopls").absolutePath
+            sandboxHomeDir().child(".lsp/bin/gopls").absolutePath
         ))
 	}
 }
