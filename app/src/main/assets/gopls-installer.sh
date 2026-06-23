@@ -14,8 +14,8 @@ install() {
 	apt install golang-go
 	
     info "Installing Go Language Server ${GOPLS_LSP_VERSION}..."
-	touch go install golang.org/x/tools/gopls@$GOPLS_LSP_VERSION
-	mkdir $LSP_DIR_GO/gopls
+	go install golang.org/x/tools/gopls@$GOPLS_LSP_VERSION
+	touch $LSP_DIR_GO/gopls
 	
 	
 	ln -sf "$HOME/go/bin/gopls" "$LSP_DIR_GO/gopls"
