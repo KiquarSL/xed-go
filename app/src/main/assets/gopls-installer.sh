@@ -1,7 +1,7 @@
 #!/system/bin/sh
 set -e
 
-source "$LOCAL/bin/utils" 2>/dev/null || true
+source "utils" 2>/dev/null
 
 # CONFIGURATION
 LSP_DIR_GO="$HOME/.lsp/go"
@@ -13,9 +13,9 @@ install() {
 	apt update
 	apt install golang-go
 	
-    info "Installing Go Language Server ${GOPLS_LSP_VERSION}..."
+    info "Installing Go Language Server $GOPLS_LSP_VERSION..."
 	go install golang.org/x/tools/gopls@$GOPLS_LSP_VERSION
-	touch $LSP_DIR_GO/gopls
+	mkdir $LSP_DIR_GO
 	
 	
 	ln -sf "$HOME/go/bin/gopls" "$LSP_DIR_GO/gopls"
