@@ -10,6 +10,7 @@ After install extension install kotlin and lsp in **Settings > Editor > Language
 
 Check installed:
 ```bash
+go --help
 gopls --help
 ```
 

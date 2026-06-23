@@ -10,8 +10,8 @@
 	"github": "KiquarSL"
   },
   "license": "MIT",
-  "tags": ["go", "golang", "lsp"],
+  "tags": ["go", "golang", "lsp", "gopls"],
   "minAppVersion": 95,
-  "maxAppVersion": 95,
+  "maxAppVersion": null,
   "repository": "https://github.com/KiquarSL/xed-go"
 }
