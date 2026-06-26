@@ -8,6 +8,7 @@ import com.rk.extension.ExtensionContext
 import com.rk.file.child
 import com.rk.icons.Icon
 import com.rk.lsp.LspRegistry
+import com.rk.runner.RunnerManager
 import com.rk.utils.getTempDir
 import kotlinx.coroutines.runBlocking
 import java.io.File
