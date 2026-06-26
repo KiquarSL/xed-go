@@ -13,7 +13,7 @@ import com.rk.activities.main.MainActivity
 
 class GoRunner(
     val icon: Icon? = BuiltinFileType.ZIG.icon,
-    val supportedExtensions: List<String> = listOf("zig"),
+    val supportedExtensions: List<String> = listOf("go"),
 ) : Runner() {
 
     override val id = "go.run"
