@@ -17,6 +17,7 @@ import kotlin.io.writeText
 @Suppress("unused")
 class Main(context: ExtensionContext) : ExtensionAPI(context) {
     private var goServer: GoServer? = null
+	private var goRunner: GoRunner? = null
 
     override fun onInstalled() {
 
@@ -28,6 +29,9 @@ class Main(context: ExtensionContext) : ExtensionAPI(context) {
 			context = context
         ).also {
             LspRegistry.registerServer(it)
+        }
+		goRunner = GoRunner().also {
+            RunnerManager.registerRunner(it)
         }
     }
 
@@ -44,6 +48,9 @@ class Main(context: ExtensionContext) : ExtensionAPI(context) {
     private fun dispose() {
         goServer?.let {
             LspRegistry.unregisterServer(it)
+        }
+		goRunner?.let {
+            RunnerManager.unregisterRunner(it)
         }
     }
 

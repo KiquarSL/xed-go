@@ -3,7 +3,7 @@
   "id": "io.kiquar.plugin.go",
   "name": "Go Support",
   "mainClass": "io.kiquar.plugin.go.Main",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Extension that provides Go and GoPls (LSP)",
   "author": {
     "displayName": "KiquarSL",
