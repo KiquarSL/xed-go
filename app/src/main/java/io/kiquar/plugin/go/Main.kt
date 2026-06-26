@@ -13,7 +13,7 @@ import com.rk.utils.getTempDir
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import kotlin.io.writeText
-import io.kiquar.plugin.kotlin.runner.GoRunner
+import io.kiquar.plugin.go.runner.GoRunner
 
 @Keep
 @Suppress("unused")
